@@ -1,0 +1,176 @@
+/* Sovereign Ecosystem Ω — Global Styles */
+/* Aura Pulse Theme — v3.0 */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ========================================
+   QUANTUM CONSTANTS (CSS Variables)
+   ======================================== */
+:root {
+  --quantum-coherence: 0.947;
+  --quantum-pi5: 306.01968478528146;
+  --quantum-chsh: 2.828;
+  --quantum-nodes: 20000000;
+  --quantum-signature: 'SOVEREIGN_Ω';
+
+  /* Color Palette */
+  --quantum-blue: #00d4ff;
+  --aura-purple: #9d50bb;
+  --deep-obsidian: #05060d;
+  --royal-blue: #2563eb;
+  --emerald: #10b981;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(5, 6, 13, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 20px;
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+}
+
+/* ========================================
+   BASE
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--deep-obsidian);
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.font-display {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ========================================
+   GLASSMORPHISM
+   ======================================== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ========================================
+   QUANTUM GLOW EFFECTS
+   ======================================== */
+.glow-blue {
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.08), 0 0 80px rgba(0, 212, 255, 0.04);
+}
+
+.glow-purple {
+  box-shadow: 0 0 40px rgba(157, 80, 187, 0.08), 0 0 80px rgba(157, 80, 187, 0.04);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.08), 0 0 80px rgba(16, 185, 129, 0.04);
+}
+
+/* ========================================
+   QUANTUM PULSE ANIMATION
+   ======================================== */
+@keyframes quantum-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.quantum-pulse {
+  animation: quantum-pulse 3s ease-in-out infinite;
+}
+
+@keyframes quantum-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.quantum-spin {
+  animation: quantum-spin 20s linear infinite;
+}
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.4);
+}
+
+/* ========================================
+   SELECTION
+   ======================================== */
+::selection {
+  background: rgba(0, 212, 255, 0.15);
+  color: #ffffff;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.text-quantum-blue { color: var(--quantum-blue); }
+.text-aura-purple { color: var(--aura-purple); }
+.text-emerald { color: var(--emerald); }
+.text-amber { color: var(--amber); }
+
+.bg-quantum-blue { background: var(--quantum-blue); }
+.bg-aura-purple { background: var(--aura-purple); }
+
+.border-quantum-blue { border-color: var(--quantum-blue); }
+.border-aura-purple { border-color: var(--aura-purple); }
+
+/* Safe area support for mobile */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}

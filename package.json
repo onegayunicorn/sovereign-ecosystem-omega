@@ -1,0 +1,45 @@
+{
+  "name": "sovereign-ecosystem-omega",
+  "version": "3.0.0",
+  "description": "Sovereign Ecosystem Ω — Aura Pulse UI + Quantum Mesh Networking",
+  "private": true,
+  "workspaces": [
+    "02_GALAXY_A17_SOVEREIGN_Ω/web"
+  ],
+  "scripts": {
+    "dev": "cd 02_GALAXY_A17_SOVEREIGN_Ω/web && npm run dev",
+    "build": "cd 02_GALAXY_A17_SOVEREIGN_Ω/web && npm run build",
+    "start": "cd 02_GALAXY_A17_SOVEREIGN_Ω/web && npm run start",
+    "test": "cd 02_GALAXY_A17_SOVEREIGN_Ω/web && npm run test",
+    "lint": "cd 02_GALAXY_A17_SOVEREIGN_Ω/web && npm run lint",
+    "deploy": "npm run build && ./scripts/deploy_ecosystem.sh"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onegayunicorn/sovereign-ecosystem-omega.git"
+  },
+  "keywords": [
+    "sovereign",
+    "quantum-mesh",
+    "aura-pulse",
+    "ai-orchestration",
+    "modular-sentinel",
+    "medical-simulation"
+  ],
+  "author": "Tyrone Power <admin@pixelated-agent.ai>",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
+  }
+}

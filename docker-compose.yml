@@ -1,0 +1,124 @@
+# Sovereign Ecosystem Ω — Full Stack Orchestration
+# From lab to life — for everyone.
+
+version: '3.8'
+
+services:
+  # Quantum Mesh Core
+  quantum-mesh:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: sovereign-mesh-core
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    environment:
+      - QUANTUM_COHERENCE=0.947
+      - QUANTUM_NODES=20000000
+      - QUANTUM_SIGNATURE=SOVEREIGN_Ω
+      - SENTINEL_WINDOW_SECONDS=3600
+      - LOG_ROTATION_MAX_BYTES=1048576
+    volumes:
+      - ./config:/app/config
+      - ./logs:/app/logs
+      - ./snapshots:/app/snapshots
+    networks:
+      - sovereign-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # Web Interface (Aura Pulse)
+  aura-pulse-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: web-builder
+    container_name: sovereign-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_QUANTUM_COHERENCE=0.947
+      - NEXT_PUBLIC_QUANTUM_NODES=20000000
+    volumes:
+      - ./02_GALAXY_A17_SOVEREIGN_Ω/web:/app/web
+      - /app/web/node_modules
+    networks:
+      - sovereign-network
+    restart: unless-stopped
+
+  # Edge Hardware Simulator (RK3588)
+  edge-hardware:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: sovereign-edge
+    ports:
+      - "8080:8080"
+      - "51820:51820/udp"
+    volumes:
+      - ./08_EDGE_HARDWARE_RK3588:/app/edge
+      - /dev:/dev
+    privileged: true
+    networks:
+      - sovereign-network
+    restart: unless-stopped
+
+  # Medical Simulation
+  medical-sim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: sovereign-medical
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./12_SOVEREIGN_MEDICAL_SIM:/app/medical
+    networks:
+      - sovereign-network
+    restart: unless-stopped
+
+  # Prometheus Metrics
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: sovereign-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    networks:
+      - sovereign-network
+    restart: unless-stopped
+
+  # Grafana Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    container_name: sovereign-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=sovereign
+    volumes:
+      - ./config/grafana:/etc/grafana/provisioning
+      - grafana-data:/var/lib/grafana
+    networks:
+      - sovereign-network
+    restart: unless-stopped
+
+networks:
+  sovereign-network:
+    driver: bridge
+    name: sovereign-network
+
+volumes:
+  prometheus-data:
+  grafana-data:
